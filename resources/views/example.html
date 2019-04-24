@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet debug page</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+  integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+  crossorigin=""></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/screen.css" />
+
+	<link rel="stylesheet" href="css/MarkerCluster.css" />
+	<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+	<script src="js/leaflet.markercluster-src.js"></script>
+</head>
+<body>
+
+	<div id="map"></div>
+
+	<script type="text/javascript">
+
+ /* Remember to reverse numbers and +, - for lat long for northern hemisphere */
+		var geoJsonData = {
+			"type": "FeatureCollection", 
+			"features": [
+				{ "type": "Feature", "id":"1", "properties": { "address": "2"   }, "geometry": { "type": "Point", "coordinates": [-77.883174,34.169697 ] } },
+				{ "type": "Feature", "id":"2", "properties": { "address": "151" }, "geometry": { "type": "Point", "coordinates": [-77.905470,34.194246 ] } },
+				{ "type": "Feature", "id":"3", "properties": { "address": "21"  }, "geometry": { "type": "Point", "coordinates": [-77.847202,34.221983 ] } },
+				{ "type": "Feature", "id":"4", "properties": { "address": "14"  }, "geometry": { "type": "Point", "coordinates": [-77.874350,34.193170 ] } },
+				{ "type": "Feature", "id":"5", "properties": { "address": "38B" }, "geometry": { "type": "Point", "coordinates": [-77.871219,34.193622 ] } },
+				{ "type": "Feature", "id":"6", "properties": { "address": "38"  }, "geometry": { "type": "Point", "coordinates": [-77.871038,34.193713 ] } }
+			]
+		};
+
+		var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		});
+
+		var map = L.map('map')
+				.addLayer(tiles);
+
+		var markers = L.markerClusterGroup();
+			
+		var geoJsonLayer = L.geoJson(geoJsonData, {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.address);
+			}
+		});
+		markers.addLayer(geoJsonLayer);
+
+		map.addLayer(markers);
+		map.fitBounds(markers.getBounds());
+	</script>
+	<script>
+	document.write('<a href="' + document.referrer + '">Go Back</a>');
+</script>
+</body>
+</html>
