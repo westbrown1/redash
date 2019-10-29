@@ -30,16 +30,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function maps()
-    {
-        return $this->hasMany(Map::class);
-    }
+
 
     public function events()
     {
         return $this->hasMany(Event::class);
     }
-
+    
         /**
      * A user can have many messages
      *
@@ -48,5 +45,15 @@ class User extends Authenticatable
     public function messages()
     {
       return $this->hasMany(Message::class);
+    }
+
+    public function listings()
+    {
+        return $this->hasMany(Listing::class);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class); 
     }
 }

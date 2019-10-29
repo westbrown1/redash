@@ -18,7 +18,7 @@
 <br><br>
 	<div class="row">
 		<div class="col-md-3">
-			<a href="{{ url('map') }}">Map of Your Current Location</a><br>
+			<a href="{{ url('map') }}">Map of Your Current Location</a><br><br>
 			<a href="{{ url('example') }}">Wilmington Cluster Map</a>
 		</div>
 		
@@ -29,7 +29,15 @@
 	 		<a href="mailto:lawsonsdad@gmail.com" style="padding-left: 63px;">email West</a>	 		
 	 	</div>	 		
 	 </div><!-- row -->
-
+<!-- row -->
+<div class="row">
+	<div class="col-md-12">
+		<a href="{{ route('listings.create') }}" class="btn btn-success">Create Listing</a>
+	
+		<a href="{{ route('listings.index') }}" class="btn btn-primary">CurrentListings</a>
+	</div>
+	 
+</div><!-- /row -->
 </div><!-- /container -->
 
 @stop

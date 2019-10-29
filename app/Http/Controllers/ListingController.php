@@ -3,36 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Dashboard;
 use App\Listing;
 use App\User;
 use Auth;
 
-class DashboardController extends Controller
+class ListingController extends Controller
 {
-
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
-
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        return view('dashboards.index')->withUser($user);
+        
+        $listings = Listing::all();
 
-
+        return view('listings.index')->withListings($listings)->withUser($user);
+//
     }
 
     /**
@@ -42,7 +35,8 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('listings.create')->withUser($user);
     }
 
     /**
@@ -53,7 +47,33 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $listings = Listing::all();
+        $listing = New Listing;
+         
+   $request->user()->listings()->create([
+    'user_id'   => auth()->id(),
+    'commission' => request('commission'),
+    'address' => request('address'),
+    'city' => request('city'),
+    'state' => request('state'),
+    'price' => request('price'),
+    'sq_feet' => request('sq_feet'),
+    'rooms' => request('rooms'),
+    'bedrooms' => request('bedrooms'),
+    'bathrooms' => request('bathrooms'),
+    'yr_built' => request('yr_built'),
+    'listing_firm' => request('listing_firm'),
+    'deed_book' => request('deed_book'),
+    'page' => request('page'),
+    'parcel_id' => request('parcel_id'),
+    'schools' => request('schools'),
+    'comments' => request('comments'),    
+
+]);
+
+        return redirect()->route('listings.index')->withListings($listings);
+        
     }
 
     /**
@@ -64,7 +84,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

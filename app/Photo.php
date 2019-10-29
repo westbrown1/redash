@@ -4,17 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Map extends Model
+class Photo extends Model
 {
- 	use Notifiable;
-
-        /**
+	/**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'address', 'lat', 'long', 'user_id'
+       'image', 'user_id', 'name',
     ];
-    
+	
+    public function user()
+    {
+    	return $this->belongsTo('App\User');
+    }
 }

@@ -3,25 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Dashboard;
-use App\Listing;
-use App\User;
-use Auth;
 
-class DashboardController extends Controller
+class PhotoController extends Controller
 {
-
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -29,10 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('dashboards.index')->withUser($user);
-
-
+        //
     }
 
     /**

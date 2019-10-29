@@ -62,3 +62,11 @@ Route::get('index', ['uses' => 'EventController@directory', 'as' => 'events.inde
 Route::put('events/{id}', ['uses' => 'EventController@update', 'as' => 'events.update']);
 Route::get('events/{id}/edit', ['uses' => 'EventController@edit', 'as' => 'events.edit']);
 Route::get('events/{id}/delete', ['uses' => 'EventController@destroy', 'as' => 'events.destroy']);
+
+Route::get('listings', ['uses' => 'ListingController@index', 'as' => 'listings.index']);
+Route::get('listings/create', ['uses' => 'ListingController@create', 'as' => 'listings.create']);
+Route::get('listings/{id}', ['uses' => 'ListingController@show', 'as' => 'listings.show']);
+Route::post('listings/{user_id}', ['uses' => 'ListingController@store', 'as' => 'listings.store']);
+Route::put('listings/{id}', ['uses' => 'ListingController@update', 'as' => 'listings.update']);
+Route::get('listings/{id}/edit', ['uses' => 'ListingController@edit', 'as' => 'listings.edit']);
+Route::get('listings/{id}/delete', ['uses' => 'ListingController@destroy', 'as' => 'listings.destroy']);
